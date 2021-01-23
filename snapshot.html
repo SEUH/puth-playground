@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  
+  <title>Puth - Playground</title>
+  
+  <link
+    rel="stylesheet"
+    href='assets/highlightjs/default.min.css'
+  >
+  <link
+    href='assets/bootstrap/bootstrap.min.css'
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href='assets/highlightjs/stackoverflow-light.min.css'
+  >
+  <style>
+      .bg-gold {
+          background: goldenrod;
+      }
+
+      .hljs {
+          padding: 0 1rem;
+      }
+
+      pre {
+          margin: 0;
+      }
+
+      .function {
+          font-size: 1.25rem;
+          margin-top: 1rem;
+          color: #1c448a;
+          margin-bottom: 0.5rem;
+      }
+
+      .example {
+          flex: 0 0 auto;
+          width: 41.6666666667%;
+          padding: 0.5rem;
+          border: 1px solid #dbdbdb;
+      }
+
+      .example > * {
+          padding: 0.125rem 0.5rem;
+          background: #e4e4e4;
+      }
+
+      .example > *:not(:first-child) {
+          margin-top: 0.25rem;
+      }
+
+      .example > * > div {
+          background: #bdbdbd;
+          padding: 0.125rem 0.5rem;
+      }
+
+      .example > * > * {
+          margin-bottom: 0.125rem;
+      }
+
+      .hl {
+          padding: 0 0.25rem;
+          background: black;
+      }
+
+      .hljs {
+          background: #efefef;
+      }
+  </style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container">
+    <a
+      class="navbar-brand d-flex align-items-center"
+      href="#"
+    >
+      <img
+        src="assets/image/puth-logo-white.png"
+        alt=""
+        width="28"
+        height="28"
+        class="me-2"
+      >
+      Puth Playground
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          href="https://puth.dev"
+          class="nav-link"
+        >Puth</a>
+      </li>
+      <li class="nav-item">
+        <a
+          href="https://github.com/SEUH/puth-playground"
+          class="nav-link"
+        >GitHub</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="bg-gold py-5">
+  <div class="container">
+    <h1>Welcome to Puths Playground</h1>
+    <p>The playground is used to do all feature tests.</p>
+  </div>
+</section>
+
+<section class="container py-4">
+  <h2>Querying</h2>
+  
+  <p class="function">$ (php: get)</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$div = $this->page->get('#querying-get');
+    </code></pre>
+    <div class="example">
+      <div id="querying-get">
+        Div with id <code>querying-get</code>
+      </div>
+    </div>
+  </div>
+  
+  <p class="function">$$ (php: getAll)</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$divs = $this->page->getAll('.querying-get');
+
+foreach ($divs as $div) {
+    echo $div->getProperty('textContent')->jsonValue();
+}
+    </code></pre>
+    <div class="example">
+      <div class="querying-get">
+        Div with class <code>querying-get</code>
+      </div>
+      <div class="querying-get">
+        Div with class <code>querying-get</code>
+      </div>
+    </div>
+  </div>
+  
+  <p class="function">contains</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$divs = $this->page->contains('apple');
+    </code></pre>
+    <div
+      class="example"
+      id="querying-contains"
+    >
+      <div>
+        Text containing apple
+      </div>
+      <div>
+        Text containing apple
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<hr>
+
+<section class="container py-4">
+  <h2>Properties</h2>
+  
+  <p class="function">.value()</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$inputValue = $this->page->get('#properties-value input')->value();
+$textareaValue = $this->page->get('#properties-value textarea')->value();
+$selectValue = $this->page->get('#properties-value select')->value();
+    </code></pre>
+    <div
+      class="example"
+      id="properties-value"
+    >
+      <input
+        type="text"
+        class="w-100"
+        value="input with value"
+      >
+      <textarea
+        rows="3"
+        class="w-100"
+      >textarea with value</textarea>
+      <select>
+        <option
+          value="apple"
+          selected
+        >selected apple
+        </option>
+      </select>
+    </div>
+  </div>
+  
+  <p class="function">.innerText()</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$divInnerText = $this->page->get('#properties-innertext')->innerText();
+    </code></pre>
+    <div class="example">
+      <div id="properties-innertext">div with this innertext</div>
+    </div>
+  </div>
+  
+  <p class="function">.innerHTML()</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$divInnerHtml = $this->page->get('#properties-innerhtml')->innerHTML();
+    </code></pre>
+    <div class="example">
+      <div id="properties-innerhtml">
+        <div>child div</div>
+        with this innerhtml
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<hr>
+
+<!--<section class="container py-4">
+  <h2>Dialog</h2>
+  
+  <p class="function">dialog</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+// Alert
+$this->page->click('#dialog-alert');
+$this->page->dialog()->accept(); // closes the alert
+
+// Prompt
+$this->page->click('#dialog-prompt');
+$this->page->dialog()->accept('type this text into the prompt');
+
+// Confirm
+$this->page->click('#dialog-confirm');
+$this->page->dialog()->dismiss(); // Dismiss
+$this->page->dialog()->accept(); // or accept
+
+// Beforeunload
+$this->page->dialog()->dismiss(); // Dismiss
+$this->page->dialog()->accept(); // or accept
+    </code></pre>
+    <div class="example">
+      <button
+        onclick="alert('alert')"
+        id="dialog-alert"
+      >Open Alert
+      </button>
+      <button
+        onclick="prompt('prompt for input')"
+        id="dialog-prompt"
+      >Open Prompt
+      </button>
+      <button
+        onclick="confirm('confirm this')"
+        id="dialog-confirm"
+      >Open Confirm
+      </button>
+    </div>
+  </div>
+</section>
+
+<hr>-->
+
+<section class="container py-4">
+  <h2>Actions</h2>
+  
+  <p class="function">type</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('input')->type('write your text');
+    </code></pre>
+    <div
+      class="example"
+      id="actions-type"
+    >
+      <input
+        type="text"
+        class="w-100"
+        placeholder="input"
+      >
+    </div>
+  </div>
+  
+  <p class="function">focus/blur</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('#actions-focus')->focus();
+
+// or with selector
+$this->page->focus('#actions-focus');
+
+// And to blur
+$this->page->get('#actions-focus')->blur();
+
+// or with selector
+$this->page->blur('#actions-focus');
+    </code></pre>
+    <div class="example">
+      <p>input with id <code>actions-focus</code></p>
+      
+      <input
+        type="text"
+        class="w-100"
+        id="actions-focus"
+        placeholder="input"
+      >
+    </div>
+  </div>
+  
+  <p class="function">clear</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('input')->clear();
+    </code></pre>
+    <div class="example">
+      <input
+        type="text"
+        class="w-100"
+        id="actions-clear"
+        value="text to clear"
+      >
+    </div>
+  </div>
+  
+  <p class="function">click & doubleClick & middleClick & rightClick</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('button')->click();
+    </code></pre>
+    <div
+      class="example"
+      id="actions-click"
+    >
+      <button onclick="document.querySelector('#actions-click-verify').innerText = 'clicked button'">click me</button>
+      <p id="actions-click-verify"></p>
+      
+      <button
+        id="actions-click-double"
+        ondblclick="document.querySelector('#actions-click-double-verify').innerText = 'double clicked button'"
+      >double click
+      </button>
+      <p id="actions-click-double-verify"></p>
+      
+      <button id="actions-click-mousedown">mousedown event</button>
+      <p id="actions-click-mousedown-verify"></p>
+      <script>
+        document.querySelector('#actions-click-mousedown')
+          .addEventListener('mousedown', event => {
+            document.querySelector('#actions-click-mousedown-verify').innerText = 'mousedown: ' + event.which;
+          });
+      </script>
+    </div>
+  </div>
+  
+  <p class="function">select</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('select')->select('Apple');
+    </code></pre>
+    <div class="example">
+      <select id="actions-select">
+        <option
+          value=""
+          selected
+          disabled
+        >-- Select Value --
+        </option>
+        <option value="apple">Apple</option>
+        <option value="orange">Orange</option>
+      </select>
+      <select
+        id="actions-select-multiple"
+        multiple="multiple"
+      >
+        <option value="apple">Apple</option>
+        <option value="orange">Orange</option>
+      </select>
+    </div>
+  </div>
+  
+  <p class="function">scrollIntoView</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->get('select')->scrollIntoView();
+    </code></pre>
+    <div class="example">
+      <div id="actions-scrollIntoView">
+        Div with id <code>actions-scrollIntoView</code>
+      </div>
+    </div>
+  </div>
+  
+  <p class="function">scrollTo</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$this->page->scrollTo(0, 200);
+
+$this->page->get('#actions-scrollTo')->scrollTo(0, 100);
+    </code></pre>
+    <div class="example">
+      <div
+        id="actions-scrollTo"
+        style="overflow: scroll; height: 7rem;"
+      >
+        <div style="height: 100px;">
+          Div with id <code>actions-scrollIntoView</code>
+        </div>
+        <div>
+          Should see this div after scroll y 100
+        </div>
+        <div style="height: 100px;"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<hr>
+
+<section class="container py-4">
+  <h2>Traversal</h2>
+  
+  <p class="function">children</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$parent = $this->page->get('#traversal-parent');
+
+// returns all 3 children
+$children = $parent->children();
+
+// returns only the children that match the selector
+$selected = $parent->children('.traversal-child-selector');
+    </code></pre>
+    <div class="example">
+      <div id="traversal-parent">
+        Div with id traversal-parent
+        <div>Child 1</div>
+        <div class="traversal-child-selector">Child 2 (with class traversal-child-selector)</div>
+        <div class="traversal-child-selector">Child 3 (with class traversal-child-selector)</div>
+      </div>
+    </div>
+  </div>
+  
+  <p class="function">parent & parents</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+$child = $this->page->get('#traversal-child');
+
+// returns the wrapper div
+$parent = $child->parent();
+
+// returns all parent elements until html
+$parents = $child->parents();
+    </code></pre>
+    <div class="example">
+      <div class="test-feature-verify">
+        Wrapper div
+        <div id="traversal-child">Div with id <code>traversal-child</code></div>
+      </div>
+    </div>
+  </div>
+  
+  <p class="function">siblings</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">
+// returns 'Child 1' and 'Child 3'
+$siblings = $this->page->get('#traversal-siblings')->siblings();
+    </code></pre>
+    <div class="example">
+      <div>Child 1</div>
+      <div id="traversal-siblings">Child 2 (with id traversal-siblings)</div>
+      <div>Child 3</div>
+    </div>
+  </div>
+</section>
+
+<script src='assets/bootstrap/bootstrap.bundle.min.js'></script>
+<script src='assets/highlightjs/highlight.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  function getAllStyle() {
+    let ra = [];
+    for (let i = 0; i < document.styleSheets.length; i++) {
+      let styleSheet = document.styleSheets[i];
+      
+      let text = '';
+      for (let ir = 0; ir < styleSheet.cssRules.length; ir++) {
+        text += styleSheet.cssRules[ir].cssText;
+      }
+      
+      ra.push({
+        tag: styleSheet.ownerNode.tagName,
+        href: styleSheet.href,
+        content: text,
+      });
+    }
+    return ra;
+  }
+  
+  async function getAllScripts() {
+    let ra = [];
+    for (let i = 0; i < document.scripts.length; i++) {
+      let script = document.scripts[i];
+      let text;
+      
+      if (script.text !== '' && script.src === '') {
+        text = script.text;
+      } else {
+        text = await fetch(script.src)
+          .then(r => r.text());
+      }
+      
+      ra.push({
+        tag: script.tagName,
+        src: script.src,
+        content: text,
+      });
+    }
+    return ra;
+  }
+  
+  (async () => {
+    console.time('snapshot');
+    
+    let styles = getAllStyle();
+    console.log('styles', styles);
+    
+    let scripts = await getAllScripts();
+    console.log('scripts', scripts);
+    
+    console.timeEnd('snapshot');
+  })();
+
+</script>
+</body>
+</html>
+
