@@ -38,6 +38,12 @@
       .text-accent {
           color: #daa520;
       }
+      
+      .btn-accent {
+          color: #191a1d;
+          background-color: #daa520;
+          border-color: #daa520;
+      }
 
       .hljs {
           padding: 0 1rem;
@@ -91,12 +97,26 @@
       .last-element-pr-0 > *:last-child > * {
           padding-right: 0!important;
       }
+      
+      .grid-container {
+          display: grid;
+          grid-auto-columns: minmax(0, 1fr);
+          grid-auto-flow: column;
+      }
+      
+      .text-grey {
+          color: #e1e1e1;
+      }
+      
+      .py-6 {
+          padding: 4rem 0;
+      }
   </style>
 </head>
 <body class="bg-light">
 
 <!--<nav class="navbar navbar-expand navbar-dark bg-darker header sticky-top">-->
-<nav class="navbar navbar-expand navbar-dark bg-darker header">
+<nav class="navbar navbar-expand navbar-dark bg-darker header sticky-top">
   <div class="container">
     <div class="d-flex align-items-center">
       <img
@@ -114,14 +134,32 @@
   </div>
 </nav>
 
-<section class="bg-gold py-5">
+<section class="bg-gold">
   <div class="container">
-    <h1>Welcome to Puth's playground</h1>
-    <p>The playground is used to do all feature tests.</p>
+    <h1 class="py-6 lh-1 fw-bold">Puth's playground</h1>
+    
+    <div class="grid-container gap-4 text-grey pb-4">
+      <div class="bg-darker rounded-1 p-3">
+        <div class="fw-bold mb-2">What is this page?</div>
+        <div>
+          This page is used for the internal Puth tests and offers the possibility to test all functions of Puth. You can check this page if you have difficulties with a function or to try out a function.
+        </div>
+      </div>
+      <div class="bg-darker rounded-1 p-3 d-flex flex-column">
+        <div class="fw-bold mb-2">Start with Puth</div>
+        <div class="flex-grow-1 d-flex flex-column">
+          How to get started with Puth you can read on puth.dev
+          <div class="d-flex gap-4 mt-auto">
+            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.dev/docs">Get started</a>
+            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.dev/docs/javascript">Supported languages</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Querying</h2>
   
   <p class="function">$ (php: get)</p>
@@ -179,7 +217,7 @@ $divs = $this->page->contains('apple');
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Properties</h2>
   
   <p class="function">.value()</p>
@@ -190,7 +228,7 @@ $textareaValue = $this->page->get('#properties-value textarea')->value();
 $selectValue = $this->page->get('#properties-value select')->value();
     </code></pre>
     <div class="example" id="properties-value">
-      <input type="text" class="w-100" value="input with value">
+      <input type="text" name="properties-value-input" class="w-100" value="input with value">
       <textarea
         rows="3"
         class="w-100"
@@ -235,7 +273,7 @@ $dataTest = $page->get('#properties-attributes')->its('data-test');
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Dialog</h2>
   
   <p class="function">dialog</p>
@@ -290,7 +328,7 @@ $dialog->accept();
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Actions</h2>
   
   <p class="function">type</p>
@@ -380,7 +418,8 @@ $this->page->get('button')->click();
       </script>
   
       <button id="actions-click-disabled" disabled>disabled</button>
-      <button id="actions-click-wait" onclick="console.log(this); this.disabled = true; setTimeout(() => this.disabled = false, 500)">click and wait</button>
+      <button id="actions-click-wait" onclick="let a = document.querySelector('#actions-click-disabled'); this.disabled = true; a.disabled = false; setTimeout(() => {this.disabled = false; a.disabled = true;}, 2000)">click and wait</button>
+      <button id="actions-click-reload" onclick="location.reload()">click for reload</button>
     </div>
   </div>
   
@@ -492,7 +531,7 @@ TODO
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Traversal</h2>
   
   <p class="function">children</p>
@@ -551,7 +590,7 @@ $siblings = $this->page->get('#traversal-siblings')->siblings();
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Drag & Drop</h2>
   
   <p class="function">Drop element on target</p>
@@ -606,7 +645,7 @@ $selected = $parent->children('.traversal-child-selector');
 
 <hr>
 
-<section class="container py-4">
+<section class="container my-5">
   <h2>Waiting on elements</h2>
   
   <p class="function">waitForMissing(Text)</p>
@@ -619,10 +658,17 @@ TODO
         <div id="wait-for-missing-text-item">click button to hide this element</div>
       </div>
       <button 
-        id="#wait-for-missing-text-button" 
-        onclick="let c = document.querySelector('#wait-for-missing-text-container'); let item = c.children.item(0); let clone = item.cloneNode(true); console.log(item, clone); item.remove(); setTimeout(() => {c.appendChild(clone);console.log(c, clone)}, 1000)"
+        id="wait-for-missing-text-button" 
+        onclick="let c = document.querySelector('#wait-for-missing-text-container'); let item = c.children.item(0); let clone = item.cloneNode(true); item.remove(); setTimeout(() => c.appendChild(clone), 2000)"
       >
         hide
+      </button>
+      <div id="wait-for-present-text-container"></div>
+      <button 
+        id="wait-for-present-text-button" 
+        onclick="let c = document.querySelector('#wait-for-present-text-container'); c.innerHTML = '<div id=\'wait-for-present-text-item\'>clicked button to show this element</div>'; setTimeout(() => c.innerHTML = '', 2000)"
+      >
+        show
       </button>
     </div>
   </div>
