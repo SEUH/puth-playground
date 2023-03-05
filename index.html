@@ -11,17 +11,11 @@
   <title>Playground - Puth</title>
   
   <link
-    rel="stylesheet"
-    href='assets/highlightjs/default.min.css'
-  >
-  <link
     href='assets/bootstrap/bootstrap.min.css'
     rel="stylesheet"
   >
-  <link
-    rel="stylesheet"
-    href='assets/highlightjs/stackoverflow-light.min.css'
-  >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark-dimmed.min.css" integrity="sha512-zcatBMvxa7rT7dDklfjauWsfiSFParF+hRfCdf4Zr40/MmA1gkFcBRbop0zMpvYF3FmznYFgcL8wlcuO/GwHoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <style>
       html {
           scroll-behavior: unset!important;
@@ -45,10 +39,6 @@
           border-color: #daa520;
       }
 
-      .hljs {
-          padding: 0 1rem;
-      }
-
       pre {
           margin: 0;
       }
@@ -56,7 +46,7 @@
       .function {
           font-size: 1.25rem;
           margin-top: 1rem;
-          color: #1c448a;
+          /*color: #1c448a;*/
           margin-bottom: 0.5rem;
       }
 
@@ -65,6 +55,7 @@
           width: 41.6666666667%;
           padding: 0.5rem;
           border: 1px solid #dbdbdb;
+          border-radius: 0.2rem;
       }
 
       .example > * {
@@ -85,15 +76,6 @@
           margin-bottom: 0.125rem;
       }
 
-      .hl {
-          padding: 0 0.25rem;
-          background: black;
-      }
-
-      .hljs {
-          background: #efefef;
-      }
-      
       .last-element-pr-0 > *:last-child > * {
           padding-right: 0!important;
       }
@@ -164,9 +146,7 @@
   
   <p class="function">$ (php: get)</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$div = $this->page->get('#querying-get');
-    </code></pre>
+    <pre class="col-7"><code class="php">$div = $this->page->get('#querying-get');</code></pre>
     <div class="example">
       <div id="querying-get">
         Div with id <code>querying-get</code>
@@ -176,13 +156,11 @@ $div = $this->page->get('#querying-get');
   
   <p class="function">$$ (php: getAll)</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$divs = $this->page->getAll('.querying-get');
+    <pre class="col-7"><code class="php">$divs = $this->page->getAll('.querying-get');
 
 foreach ($divs as $div) {
     echo $div->getProperty('textContent')->jsonValue();
-}
-    </code></pre>
+}</code></pre>
     <div class="example">
       <div class="querying-get">
         Div with class <code>querying-get</code>
@@ -195,9 +173,7 @@ foreach ($divs as $div) {
   
   <p class="function">contains</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$divs = $this->page->contains('apple');
-    </code></pre>
+    <pre class="col-7"><code class="php">$divs = $this->page->contains('apple');</code></pre>
     <div
       class="example"
       id="querying-contains"
@@ -222,11 +198,9 @@ $divs = $this->page->contains('apple');
   
   <p class="function">.value()</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$inputValue = $this->page->get('#properties-value input')->value();
+    <pre class="col-7"><code class="php">$inputValue = $this->page->get('#properties-value input')->value();
 $textareaValue = $this->page->get('#properties-value textarea')->value();
-$selectValue = $this->page->get('#properties-value select')->value();
-    </code></pre>
+$selectValue = $this->page->get('#properties-value select')->value();</code></pre>
     <div class="example" id="properties-value">
       <input type="text" name="properties-value-input" class="w-100" value="input with value">
       <textarea
@@ -241,9 +215,7 @@ $selectValue = $this->page->get('#properties-value select')->value();
   
   <p class="function">.innerText()</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$divInnerText = $this->page->get('#properties-innertext')->innerText();
-    </code></pre>
+    <pre class="col-7"><code class="php">$divInnerText = $this->page->get('#properties-innertext')->innerText();</code></pre>
     <div class="example">
       <div id="properties-innertext">div with this innertext</div>
     </div>
@@ -251,9 +223,7 @@ $divInnerText = $this->page->get('#properties-innertext')->innerText();
   
   <p class="function">.innerHTML()</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$divInnerHtml = $this->page->get('#properties-innerhtml')->innerHTML();
-    </code></pre>
+    <pre class="col-7"><code class="php">$divInnerHtml = $this->page->get('#properties-innerhtml')->innerHTML();</code></pre>
     <div class="example">
       <div id="properties-innerhtml"><div>child div</div> with this innerhtml</div>
     </div>
@@ -261,9 +231,7 @@ $divInnerHtml = $this->page->get('#properties-innerhtml')->innerHTML();
   
   <p class="function">Attributes</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$dataTest = $page->get('#properties-attributes')->its('data-test');
-    </code></pre>
+    <pre class="col-7"><code class="php">$dataTest = $page->get('#properties-attributes')->its('data-test');    </code></pre>
     <div class="example">
       <div id="properties-attributes" data-test="1234" aria-rowspan="5678">div with data and aria attribute</div>
     </div>
@@ -278,8 +246,7 @@ $dataTest = $page->get('#properties-attributes')->its('data-test');
   
   <p class="function">dialog</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-// Alert
+    <pre class="col-7"><code class="php">// Alert
 $this->page->click('#dialog-alert');
 $dialog = $this->page->waitForDialog(); // waits for a dialog to open
 $dialog->dismiss();
@@ -294,8 +261,7 @@ $dialog->accept('type this text into the prompt');
 $this->page->click('#dialog-confirm');
 $dialog = $this->page->waitForDialog();
 $dialog->accept();
-// or $dialog->dismiss();
-    </code></pre>
+// or $dialog->dismiss();</code></pre>
     <div class="example">
       <button
         onclick="alert('alert')"
@@ -333,9 +299,7 @@ $dialog->accept();
   
   <p class="function">type</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('input')->type('write your text');
-    </code></pre>
+    <pre class="col-7"><code class="php">$this->page->get('input')->type('write your text');</code></pre>
     <div
       class="example"
       id="actions-type"
@@ -350,8 +314,7 @@ $this->page->get('input')->type('write your text');
   
   <p class="function">focus/blur</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('#actions-focus')->focus();
+    <pre class="col-7"><code class="php">$this->page->get('#actions-focus')->focus();
 
 // or with selector
 $this->page->focus('#actions-focus');
@@ -360,8 +323,7 @@ $this->page->focus('#actions-focus');
 $this->page->get('#actions-focus')->blur();
 
 // or with selector
-$this->page->blur('#actions-focus');
-    </code></pre>
+$this->page->blur('#actions-focus');</code></pre>
     <div class="example">
       <p>input with id <code>actions-focus</code></p>
       
@@ -376,9 +338,7 @@ $this->page->blur('#actions-focus');
   
   <p class="function">clear</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('input')->clear();
-    </code></pre>
+    <pre class="col-7"><code class="php">$this->page->get('input')->clear();</code></pre>
     <div class="example">
       <input
         type="text"
@@ -391,9 +351,7 @@ $this->page->get('input')->clear();
   
   <p class="function">click & doubleClick & middleClick & rightClick</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('button')->click();
-    </code></pre>
+    <pre class="col-7"><code class="php">$this->page->get('button')->click();</code></pre>
     <div
       class="example"
       id="actions-click"
@@ -425,9 +383,7 @@ $this->page->get('button')->click();
   
   <p class="function">select</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('select')->select('Apple');
-    </code></pre>
+    <pre class="col-7"><code class="php">$this->page->get('select')->select('Apple');</code></pre>
     <div class="example">
       <select id="actions-select">
         <option
@@ -459,9 +415,7 @@ $this->page->get('select')->select('Apple');
   
   <p class="function">checkbox</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-      TODO
-    </code></pre>
+    <pre class="col-7"><code class="php">// TOD</code></pre>
     <div class="example">
       <div>
         <input type="checkbox" id="action-checkbox" value="test-1234" name="action-checkbox"/>
@@ -478,9 +432,7 @@ $this->page->get('select')->select('Apple');
   
   <p class="function">scrollIntoView</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->get('select')->scrollIntoView();
-    </code></pre>
+    <pre class="col-7"><code class="php">$this->page->get('select')->scrollIntoView();</code></pre>
     <div class="example">
       <div id="actions-scrollIntoView">
         Div with id <code>actions-scrollIntoView</code>
@@ -490,11 +442,9 @@ $this->page->get('select')->scrollIntoView();
   
   <p class="function">scrollTo</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$this->page->scrollTo(0, 200);
+    <pre class="col-7"><code class="php">$this->page->scrollTo(0, 200);
 
-$this->page->get('#actions-scrollTo')->scrollTo(0, 100);
-    </code></pre>
+$this->page->get('#actions-scrollTo')->scrollTo(0, 100);</code></pre>
     <div class="example">
       <div
         id="actions-scrollTo"
@@ -513,9 +463,7 @@ $this->page->get('#actions-scrollTo')->scrollTo(0, 100);
   
   <p class="function">hover</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-TODO
-    </code></pre>
+    <pre class="col-7"><code class="php">// TOD</code></pre>
     <div class="example">
       <div
         id="actions-hover"
@@ -536,15 +484,13 @@ TODO
   
   <p class="function">children</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$parent = $this->page->get('#traversal-parent');
+    <pre class="col-7"><code class="php">$parent = $this->page->get('#traversal-parent');
 
 // returns all 3 children
 $children = $parent->children();
 
 // returns only the children that match the selector
-$selected = $parent->children('.traversal-child-selector');
-    </code></pre>
+$selected = $parent->children('.traversal-child-selector');</code></pre>
     <div class="example">
       <div id="traversal-parent">
         Div with id traversal-parent
@@ -557,15 +503,13 @@ $selected = $parent->children('.traversal-child-selector');
   
   <p class="function">parent & parents</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$child = $this->page->get('#traversal-child');
+    <pre class="col-7"><code class="php">$child = $this->page->get('#traversal-child');
 
 // returns the wrapper div
 $parent = $child->parent();
 
 // returns all parent elements until html
-$parents = $child->parents();
-    </code></pre>
+$parents = $child->parents();</code></pre>
     <div class="example">
       <div class="test-feature-verify">
         Wrapper div
@@ -576,10 +520,8 @@ $parents = $child->parents();
   
   <p class="function">siblings</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-// returns 'Child 1' and 'Child 3'
-$siblings = $this->page->get('#traversal-siblings')->siblings();
-    </code></pre>
+    <pre class="col-7"><code class="php">// returns 'Child 1' and 'Child 3'
+$siblings = $this->page->get('#traversal-siblings')->siblings();</code></pre>
     <div class="example">
       <div>Child 1</div>
       <div id="traversal-siblings">Child 2 (with id traversal-siblings)</div>
@@ -595,15 +537,13 @@ $siblings = $this->page->get('#traversal-siblings')->siblings();
   
   <p class="function">Drop element on target</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-$parent = $this->page->get('#traversal-parent');
+    <pre class="col-7"><code class="php">$parent = $this->page->get('#traversal-parent');
 
 // returns all 3 children
 $children = $parent->children();
 
 // returns only the children that match the selector
-$selected = $parent->children('.traversal-child-selector');
-    </code></pre>
+$selected = $parent->children('.traversal-child-selector');</code></pre>
     <div class="example" id="draganddrop-example">
       <div 
         id="draganddrop-example1-item" 
@@ -646,13 +586,11 @@ $selected = $parent->children('.traversal-child-selector');
 <hr>
 
 <section class="container my-5">
-  <h2>Waiting on elements</h2>
+  <h2>Wait for</h2>
   
   <p class="function">waitForMissing(Text)</p>
   <div class="row">
-    <pre class="col-7"><code class="php">
-TODO
-    </code></pre>
+    <pre class="col-7"><code class="php">// TODO</code></pre>
     <div class="example" id="wait-for-missing">
       <div id="wait-for-missing-text-container">
         <div id="wait-for-missing-text-item">click button to hide this element</div>
@@ -670,6 +608,77 @@ TODO
       >
         show
       </button>
+    </div>
+  </div>
+  
+  <p class="function">waitForEvent</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">// TODO</code></pre>
+    <div class="example">
+      <button id="wait-for-event-document" onclick="setTimeout(_ => document.dispatchEvent(new Event('test-event')), 1000)">document event 'test-event'</button>
+      <button id="wait-for-event-element" onclick="setTimeout(_ => this.dispatchEvent(new Event('test-event')), 1000)">this button event 'test-event'</button>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="container my-5">
+  <h2>File</h2>
+  
+  <p class="function">waitForMissing(Text)</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">// TODO</code></pre>
+    <div class="example" id="file-attach">
+      <input type="file" id="file-test-input" name="file-test-input" multiple>
+  
+      <div>File content preview:</div>
+      <div id="file-attach-preview"></div>
+      
+      <script>
+        const fileAttachPreview = document.querySelector('#file-attach-preview');
+        
+        console.log(fileAttachPreview);
+        
+        document.querySelector('#file-test-input').addEventListener('change', function () {
+          if (this.files.length === 0) {
+            fileAttachPreview.innerText = '';
+            return;
+          }
+          
+          let files = [...this.files].filter(file => file.size < 256);
+  
+          if (files.length === 0) {
+            fileAttachPreview.innerText = 'File/s too big for preview.';
+            return;
+          }
+  
+          fileAttachPreview.innerText = '';
+          
+          files.forEach(file => {
+            let reader = new FileReader();
+  
+            reader.readAsText(file, "UTF-8");
+            reader.onload = (evt) => {
+              fileAttachPreview.innerText += evt.target.result
+            };
+          })
+        });
+      </script>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="container my-5">
+  <h2>iFrame</h2>
+  
+  <p class="function">withinFrame</p>
+  <div class="row">
+    <pre class="col-7"><code class="php">// TODO</code></pre>
+    <div class="example">
+      <iframe id="iframe-example" src="https://puth.dev/" style="width: 100%; height: 300px"></iframe>
     </div>
   </div>
 </section>
