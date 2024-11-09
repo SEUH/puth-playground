@@ -8,7 +8,7 @@
   >
   <link rel="icon" href="/favicon.ico" />
   
-  <title>Playground - Puth</title>
+  <title>Playground | Puth</title>
   
   <link
     href='assets/bootstrap/bootstrap.min.css'
@@ -25,7 +25,7 @@
           background-color: #191a1d;
       }
       
-      .bg-gold {
+      .bg-accent {
           background: #daa520;
       }
       
@@ -110,13 +110,13 @@
       <span class="ms-2 text-accent" style="font-size: 1.125rem;">Puth</span>
     </div>
     <ul class="navbar-nav ms-auto last-element-pr-0">
-      <li class="nav-item"><a href="https://puth.dev/" target="_blank" class="nav-link">Puth</a></li>
-      <li class="nav-item"><a href="https://github.com/SEUH/puth" target="_blank" class="nav-link">Github</a></li>
+      <li class="nav-item"><a href="https://puth.io/" target="_blank" class="nav-link">Puth</a></li>
+      <li class="nav-item"><a href="https://github.com/puth-io/puth" target="_blank" class="nav-link">Github</a></li>
     </ul>
   </div>
 </nav>
 
-<section class="bg-gold">
+<section class="bg-accent">
   <div class="container">
     <h1 class="py-6 lh-1 fw-bold">Puth's playground</h1>
     
@@ -130,10 +130,10 @@
       <div class="bg-darker rounded-1 p-3 d-flex flex-column">
         <div class="fw-bold mb-2">Start with Puth</div>
         <div class="flex-grow-1 d-flex flex-column">
-          How to get started with Puth you can read on puth.dev
+          How to get started with Puth you can read on puth.io
           <div class="d-flex gap-4 mt-auto">
-            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.dev/docs">Get started</a>
-            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.dev/docs/javascript">Supported languages</a>
+            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.io/docs/0_x">Get started</a>
+            <a class="btn btn-sm btn-accent flex-grow-1" href="https://puth.io/docs/0_x/getting-started#clients-framework-integrations">Supported languages</a>
           </div>
         </div>
       </div>
@@ -545,9 +545,9 @@ $children = $parent->children();
 // returns only the children that match the selector
 $selected = $parent->children('.traversal-child-selector');</code></pre>
     <div class="example" id="draganddrop-example">
-      <div 
-        id="draganddrop-example1-item" 
-        draggable="true" 
+      <div
+        id="draganddrop-example1-item"
+        draggable="true"
         ondragstart="event.dataTransfer.setData('text', 'draganddrop-example1-item')"
       >
         Drag this
@@ -595,15 +595,15 @@ $selected = $parent->children('.traversal-child-selector');</code></pre>
       <div id="wait-for-missing-text-container">
         <div id="wait-for-missing-text-item">click button to hide this element</div>
       </div>
-      <button 
-        id="wait-for-missing-text-button" 
+      <button
+        id="wait-for-missing-text-button"
         onclick="let c = document.querySelector('#wait-for-missing-text-container'); let item = c.children.item(0); let clone = item.cloneNode(true); item.remove(); setTimeout(() => c.appendChild(clone), 2000)"
       >
         hide
       </button>
       <div id="wait-for-present-text-container"></div>
-      <button 
-        id="wait-for-present-text-button" 
+      <button
+        id="wait-for-present-text-button"
         onclick="let c = document.querySelector('#wait-for-present-text-container'); c.innerHTML = '<div id=\'wait-for-present-text-item\'>clicked button to show this element</div>'; setTimeout(() => c.innerHTML = '', 2000)"
       >
         show
@@ -676,7 +676,7 @@ $selected = $parent->children('.traversal-child-selector');</code></pre>
   <div class="row">
     <pre class="col-7"><code class="php">// TODO</code></pre>
     <div class="example">
-      <iframe id="iframe-example" src="https://puth.dev/" style="width: 100%; height: 300px"></iframe>
+      <iframe id="iframe-example" src="https://puth.io/" style="width: 100%; height: 300px"></iframe>
     </div>
   </div>
 </section>
