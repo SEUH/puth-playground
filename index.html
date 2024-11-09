@@ -554,29 +554,29 @@ $selected = $parent->children('.traversal-child-selector');</code></pre>
       </div>
       
       <div>
-        <div id="draganddrop-example1-item-top" draggable="true" style="height: 3px; opacity: 0;"></div>
+        <div id="draganddrop-example1-item-top" draggable="true" style="height: 5px; background-color: rgba(11,94,215,0.47)"></div>
         
-        <div class="d-flex margin-top: 1rem">
-          <div id="draganddrop-example1-item-left" draggable="true" style="width: 3px;"></div>
+        <div class="d-flex p-0">
+          <div id="draganddrop-example1-item-left" draggable="true" style="width: 5px; background-color: rgba(11,94,215,0.47)"></div>
           
           <div
-            ondrop="document.querySelector('#draganddrop-example1-dropzone-result').innerText = 'dropped element text: ' + event.dataTransfer.getData('text'); console.log(event.target)"
+            ondrop="document.querySelector('#draganddrop-example1-dropzone-result').innerText = 'dropped element text: ' + event.dataTransfer.getData('text');"
             ondragover="event.preventDefault()"
             ondragenter="document.querySelector('#draganddrop-example1-dropzone-result').innerText = 'dragging over...'"
             ondragleave="document.querySelector('#draganddrop-example1-dropzone-result').innerText = 'into here'"
             style="height: 4rem;"
             id="draganddrop-example1-dropzone-result-container"
-            class="flex-grow-1"
+            class="flex-grow-1 p-0"
           >
-            <div style="pointer-events: none" id="draganddrop-example1-dropzone-result">
+            <div style="pointer-events: none" id="draganddrop-example1-dropzone-result" class="p-3">
               into here
             </div>
           </div>
           
-          <div id="draganddrop-example1-item-right" draggable="true" style="width: 3px;"></div>
+          <div id="draganddrop-example1-item-right" draggable="true" style="width: 5px; background-color: rgba(11,94,215,0.47)"></div>
         </div>
   
-        <div id="draganddrop-example1-item-bottom" draggable="true" style="height: 3px; opacity: 0;"></div>
+        <div id="draganddrop-example1-item-bottom" draggable="true" style="height: 5px; background-color: rgba(11,94,215,0.47)"></div>
       </div>
       
     </div>
@@ -637,8 +637,6 @@ $selected = $parent->children('.traversal-child-selector');</code></pre>
       
       <script>
         const fileAttachPreview = document.querySelector('#file-attach-preview');
-        
-        console.log(fileAttachPreview);
         
         document.querySelector('#file-test-input').addEventListener('change', function () {
           if (this.files.length === 0) {
